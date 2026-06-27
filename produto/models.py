@@ -1,17 +1,5 @@
 from django.db import models
-'''
- Produto:
-            nome - Char
-            descricao_curta - Text
-            descricao_longa - Text
-            imagem - Image
-            slug - Slug
-            preco_marketing - Float
-            preco_marketing_promocional - Float
-            tipo - Choices
-                ('V', 'Variável'),
-                ('S', 'Simples'),
-'''
+
 class Produto(models.Model):
     nome = models.CharField(max_length=255)
     descricao_curta = models.TextField(max_length=255)
@@ -30,11 +18,9 @@ class Produto(models.Model):
     )
 
 
-'''
-        Variacao:
-            nome - char
-            produto - FK Produto
-            preco - Float
-            preco_promocional - Float
-            estoque - Int
-'''
+class Variacao(models.Model):
+    nome = models.CharField(max_length=255)
+    produto = models.ForeignKey(Produto, on_delete=models.DO_NOTHING)
+    preco = models.FloatField()
+    preco_promocional = models.FloatField()
+    estoque = models.IntegerField()
