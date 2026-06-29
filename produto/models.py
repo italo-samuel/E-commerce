@@ -1,4 +1,7 @@
 from django.db import models
+from PIL import Image
+import os
+from django.conf import settings
 
 class Produto(models.Model):
     nome = models.CharField(max_length=255)
@@ -18,9 +21,47 @@ class Produto(models.Model):
     )
 
 
+    @staticmethod
+    def resize_image(img, new_width=800):
+        img_full_path = os.path.join(settings.MEDIA_ROOT, img.name)
+        img_pill = Image.open(img_full_path)
+        original_width, original_height = img_pill.size
+
+        if original_width <= new_width:
+            img_pill.close()
+            return
+
+        new_height = round((new_width * original_height) / original_width)
+
+        new_img = img_pill.resize((new_width, new_height), Image.LANCZOS)
+        new_img.save(
+            img_full_path,
+            optimize = True,
+            quality = 50
+        )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        max_image_size = 800
+
+        if self.imagem:
+            self.resize_image(self.imagem, max_image_size)
+
+    def __str__(self):
+        return self.nome
+
+
 class Variacao(models.Model):
-    nome = models.CharField(max_length=255)
+    nome = models.CharField(max_length=50, blank=True, null=True)
     produto = models.ForeignKey(Produto, on_delete=models.DO_NOTHING)
     preco = models.FloatField()
-    preco_promocional = models.FloatField()
-    estoque = models.IntegerField()
+    preco_promocional = models.FloatField(default=0)
+    estoque = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.nome or self.produto
+    
+    class Meta:
+        verbose_name = 'Variação'
+        verbose_name_plural = 'Variações'
