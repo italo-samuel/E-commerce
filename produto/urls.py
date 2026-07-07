@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
+from . import admin
 
-app_name = 'produto'
 
 urlpatterns = [
     path('', views.ListaProdutos.as_view(), name='lista'),
-    path('<slug>', views.DetalheProduto.as_view(), name='detalhe'),
+    #path('<slug>', views.DetalheProduto.as_view(), name='detalhe'),
     path('adcionaraocarrinho/', views.AdicionarAoCarrinho.as_view(), 
          name='adicionaraocarrinho'),
     path('removerdocarrinho/', views.RemoverDoCarrinho.as_view(), 
