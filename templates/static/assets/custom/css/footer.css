@@ -1,0 +1,33 @@
+/* Estilo principal do Rodapé */
+.rodape-padrao {
+    background-color: #8E0D3C; /* Mesma cor de fundo do menu */
+    color: #EAE7DD;            /* Mesma cor das letras do menu */
+    display: flex;             /* Usa Flexbox para alinhar os lados */
+    justify-content: space-between; /* Empurra um lado para a esquerda e outro para a direita */
+    align-items: center;       /* Centraliza o texto verticalmente */
+    padding: 20px 30px;        /* Espaçamento interno similar ao do menu */
+    margin-top: 50px;          /* Dá um espaço em relação aos cards de produtos acima dele */
+}
+
+/* Estilo da parte esquerda (Feito com Django) */
+.rodape-esquerda {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Estilo da parte direita */
+.rodape-direita {
+    font-size: 0.9rem;
+    opacity: 0.8; /* Deixa o texto do lado direito levemente mais apagado para dar hierarquia */
+}
+
+/* Ajuste para telas menores (Celulares) */
+@media (max-width: 600px) {
+    .rodape-padrao {
+        flex-direction: column; /* Empilha os itens um em cima do outro */
+        text-align: center;
+        gap: 10px; /* Espaço entre as linhas quando estiverem empilhadas */
+        padding: 20px 15px;
+    }
+}

@@ -15,14 +15,117 @@ a{
     text-decoration: none;
 }
 
+/* 1. O Layout Pai (Página Inteira) */
+.layout-principal {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    
+    display: flex;
+    justify-content: center; /* Empurra o conjunto todo (filtro + produtos) para o MEIO da tela */
+    align-items: flex-start; /* Evita que o filtro estique para baixo */
+    
+    gap: 5px; /* Define o quão "colado" o filtro ficará dos cards (pode diminuir para 10px se quiser mais perto) */
+}
+
+/* 2. A Barra de Filtros */
+.barra-filtros {
+    width: 220px;     /* Largura fixa do filtro */
+    flex-shrink: 0;   /* Garante que o navegador não tente amassar o filtro */
+    
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-right: 0;
+    margin-top: 40px;
+    
+    /* Mantém o filtro colado na tela ao rolar */
+    position: sticky;
+    top: 80px; 
+    z-index: 10;
+}
+
+/* 3. A Área de Produtos */
+.container-produtos {
+    width: 100%;
+    max-width: 1050px; /* Limitamos o tamanho máximo da prateleira. Isso força o aparecimento do espaço vazio na esquerda da tela! */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    
+    gap: 15px; /* Deixe igual ao gap do layout-principal para alinhar matematicamente */
+}
+
+.barra-filtros h3 {
+    color: #1D1842;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+}
+
+.lista-filtros {
+    list-style: none; /* Remove as bolinhas da lista */
+}
+
+.lista-filtros li {
+    margin-bottom: 12px;
+}
+
+.lista-filtros a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1rem;
+    transition: color 0.2s;
+    display: block; /* Deixa a área de clique maior */
+}
+
+.lista-filtros a:hover {
+    color: #EF3B33; /* Fica na cor do menu ao passar o mouse */
+    font-weight: bold;
+}
+
+/* =========================================
+   AJUSTE NA ÁREA DE PRODUTOS
+========================================= */
+
+/* Tira o sublinhado e a cor azul padrão do botão que foi envolvido na tag <a> */
+.link-comprar {
+    text-decoration: none;
+}
+
+/* =========================================
+   RESPONSIVIDADE (CELULARES E TABLETS)
+========================================= */
+@media (max-width: 992px) {
+    .layout-principal {
+        grid-template-columns: 1fr; /* Empilha a barra de filtros em cima dos produtos */
+    }
+    .container-produtos {
+        grid-template-columns: repeat(3, 1fr); /* Reduz os cards para caber na tela */
+    }
+}
+
+@media (max-width: 768px) {
+    .container-produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .container-produtos {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Define um grid responsivo para alinhar os cards */
 .container-produtos {
-    max-width: 1200px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 40px 20px;
     display: grid;
     /* Cria colunas que se ajustam sozinhas (no mínimo 280px cada) */
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -34,7 +137,7 @@ a{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    min-height: 400px; /* Altura padrão para todos os cards */
+    min-height: 300px; /* Altura padrão para todos os cards */
     height: 100%;
     transition: transform 0.2s;
 
@@ -96,7 +199,7 @@ a{
 .preco-promocional {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #28a745; /* Verde para destacar a promoção */
+    color: #1D1842; /* Verde para destacar a promoção */
 }
 
 .preco-real {
@@ -107,7 +210,7 @@ a{
 
 /* Botão Comprar */
 .btn-comprar {
-    background-color: #1D1842; /* A cor que você pediu */
+    background-color: #5f1530; /* A cor que você pediu */
     color: #ffffff;
     border: none;
     padding: 15px;
@@ -123,7 +226,7 @@ a{
 }
 
 .btn-comprar:hover {
-    background-color: #2b2361; /* Cor um pouco mais clara no hover */
+    background-color: #EF3B33; /* Cor um pouco mais clara no hover */
 }
 
 /* Ícone do Carrinho no Botão */

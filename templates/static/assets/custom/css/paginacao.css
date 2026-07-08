@@ -1,0 +1,50 @@
+/* =========================================
+   ESTILOS DA PAGINAÇÃO
+========================================= */
+.paginacao-container {
+    display: flex;
+    justify-content: center; /* Centraliza a paginação no meio da tela */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.paginacao-lista {
+    display: flex;
+    gap: 8px; /* Espaço entre os botões (quadradinhos) */
+    list-style: none; /* Tira as bolinhas padrão de lista */
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo padrão de cada botão da paginação */
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    background-color: #ffffff;
+    color: #99775C; /* Cor padrão do seu menu */
+    border: 2px solid #99775C; /* Bordinha com a cor do menu */
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none; /* Tira o sublinhado do link */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse */
+.page-link:hover {
+    background-color: #EF3B33; /* Fundo vira a cor do menu */
+    color: #EAE7DD; /* Letra vira a cor clara do menu */
+}
+
+/* Estilo da página atual (Item Ativo) */
+.page-item.active .page-link {
+    background-color: #1D1842; /* Usa a cor do botão comprar para dar destaque */
+    color: #ffffff;
+    border-color: #1D1842;
+    pointer-events: none; /* Desativa o clique no botão da página que já está aberta */
+}

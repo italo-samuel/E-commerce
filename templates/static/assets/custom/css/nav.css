@@ -6,7 +6,7 @@ body {
 
 /* Configuração principal do Menu */
 .menu-topo {
-    background-color: #1D1842; /* Cor de fundo do menu */
+    background-color: #8E0D3C; /* Cor de fundo do menu */
     color: #EAE7DD;            /* Cor das letras do menu */
     display: flex;             /* Usa Flexbox para colocar os itens lado a lado */
     justify-content: space-between; /* Empurra a Logo para a esquerda e o resto para a direita */
@@ -68,8 +68,8 @@ body {
     padding: 8px 15px;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #EAE7DD; /* Cor do botão invertida para destacar */
-    color: #99775C;            /* Cor do texto do botão */
+    background-color: #d7d6d6; /* Cor do botão invertida para destacar */
+    color: #5f1530;            /* Cor do texto do botão */
     border: none;
     border-radius: 0 4px 4px 0; /* Arredonda só os cantos da direita */
     cursor: pointer;
