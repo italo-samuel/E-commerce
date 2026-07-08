@@ -1,0 +1,81 @@
+/* Reseta as margens padrão do navegador */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Configuração principal do Menu */
+.menu-topo {
+    background-color: #1D1842; /* Cor de fundo do menu */
+    color: #EAE7DD;            /* Cor das letras do menu */
+    display: flex;             /* Usa Flexbox para colocar os itens lado a lado */
+    justify-content: space-between; /* Empurra a Logo para a esquerda e o resto para a direita */
+    align-items: center;       /* Alinha tudo verticalmente no centro */
+    padding: 15px 30px;        /* Espaçamento interno (cima/baixo e esquerda/direita) */
+    
+    /* Fixa o menu no topo da tela (opcional, mas recomendado) */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Estilo da Logo */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Container que segura o carrinho e a barra de pesquisa */
+.menu-direita {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Cria um espaço de 25px entre o carrinho e a pesquisa */
+}
+
+/* Estilo do Carrinho */
+.link-carrinho {
+    color: #EAE7DD;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e a palavra "Carrinho" */
+    transition: opacity 0.2s;
+}
+
+.link-carrinho:hover {
+    opacity: 0.8; /* Dá um leve efeitinho ao passar o mouse */
+}
+
+/* Estilo do Form de Pesquisa */
+.caixa-pesquisa {
+    display: flex;
+}
+
+/* Estilo do Input (Campo de digitar) */
+.caixa-pesquisa input {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px 0 0 4px; /* Arredonda só os cantos da esquerda */
+    outline: none;
+}
+
+/* Estilo do Botão de Pesquisa */
+.caixa-pesquisa button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #EAE7DD; /* Cor do botão invertida para destacar */
+    color: #99775C;            /* Cor do texto do botão */
+    border: none;
+    border-radius: 0 4px 4px 0; /* Arredonda só os cantos da direita */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.caixa-pesquisa button:hover {
+    background-color: #ffffff; /* Fica branco ao passar o mouse */
+}

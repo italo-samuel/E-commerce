@@ -6,50 +6,40 @@
 {% block 'conteudo' %}
 
 
-  <div class="row">
-            <div class="col-lg-12">
-                <div class="card-columns">
-                {% for produto in produtos %}
-
-                    <div class="card">
-                    {% if produto.imagem %}
-                        <a href="{{ produto.slug }}">
-                        <img class="card-img-top" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
-                        </a>
+ <main class="container-produtos">
+        {% for produto in produtos %}
+        <article class="card-produto">
+            <div class="imagem-container">
+                {% if produto.imagem %}
+                <a href="{{produto.slug}}">
+                  <img src="{{produto.imagem.url}}" alt="{{prduto.descricao_curta}}">
+                </a>
+                {% endif %}
+            </div>
+            
+            <div class="card-conteudo">
+                <h2 class="produto-titulo">{{produto.nome}}</h2>
+                <p class="produto-descricao">{{produto.descricao_curta}}</p>
+                
+                <div class="produto-precos">
+                    {% if produto.preco_marketing_promocional %}
+                        <span class="preco-promocional">{{produto.preco_marketing_promocional|formata_preco}}</span>
+                        <span class="preco-real">{{produto.preco_marketing|formata_preco}}</span>
+                    {% else %}
+                        <span class="preco-promocional">{{produto.preco_marketing|formata_preco}}</span>
                     {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ produto.nome }}</h5>
-                            <p class="card-text">{{ produto.descricao_curta }}</p>
-                            <div class="container product-price-block text-center">
-
-                            {% if produto.preco_marketing_promocional %}
-                                <span class="product-price">
-                                    {{ produto.preco_marketing_promocional|formata_preco}}
-                                </span>
-                                <span class="product-old-price text-muted">
-                                    {{ produto.preco_marketing|formata_preco}}
-                                </span>
-                            {% else %}
-                                 <span class="product-price">
-                                    {{ produto.preco_marketing|formata_preco}}
-                                </span>
-                            {% endif %}
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-light-custom text-center">
-                            <a href="post.html" class="btn btn-primary btn-sm m-1 btn-block">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Comprar
-                            </a>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-
-
                 </div>
             </div>
-        </div>
+
+            <a href="{{produto.slug}}">
+            <button class="btn-comprar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                Comprar
+            </button>
+            </a>
+        </article>
+        {% endfor %}
     
 {% endblock %}

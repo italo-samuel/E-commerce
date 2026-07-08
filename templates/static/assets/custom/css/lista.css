@@ -1,0 +1,133 @@
+/* Resete básico para garantir que fique igual em todos os navegadores */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* Define um grid responsivo para alinhar os cards */
+.container-produtos {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    /* Cria colunas que se ajustam sozinhas (no mínimo 280px cada) */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+/* Estrutura principal do Card */
+.card-produto {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 400px; /* Altura padrão para todos os cards */
+    height: 100%;
+    transition: transform 0.2s;
+
+    width: 100%;
+    max-width: 300px;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px); /* Efeito de pular um pouco ao passar o mouse */
+}
+
+/* Área da imagem (Tamanho fixo) */
+.imagem-container {
+    width: 100%;
+    height: 150px; /* Altura exata e fixa para a imagem */
+    flex-shrink: 0;
+}
+
+.imagem-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Área de texto (Título, descrição, preços) */
+.card-conteudo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço livre e empurra o botão para baixo */
+}
+
+.produto-titulo {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.produto-descricao {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    /* Limita a descrição a 3 linhas com reticências (...) caso seja longa */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Área de Preços */
+.produto-precos {
+    margin-top: auto; /* Joga os preços sempre para o final da área de conteúdo */
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.preco-promocional {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745; /* Verde para destacar a promoção */
+}
+
+.preco-real {
+    font-size: 0.8rem;
+    color: #999;
+    text-decoration: line-through; /* Linha riscando o preço original */
+}
+
+/* Botão Comprar */
+.btn-comprar {
+    background-color: #1D1842; /* A cor que você pediu */
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.btn-comprar:hover {
+    background-color: #2b2361; /* Cor um pouco mais clara no hover */
+}
+
+/* Ícone do Carrinho no Botão */
+.btn-comprar svg {
+    width: 22px;
+    height: 22px;
+}

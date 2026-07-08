@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'pedido',
     'perfil',
     'produto',
+
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
 
@@ -135,6 +139,11 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning'
 }
+# Para o Debug Toolbar
+INTERNAL_IPS = [
+    # Normalmente, usamos o localhost para desenvolvimento:
+    "127.0.0.1",
+]
 
 # Sessão em dias 60s * 60m * 24h * 1d
 SESSION_COOKIE_AGE = 60*60*24*7
