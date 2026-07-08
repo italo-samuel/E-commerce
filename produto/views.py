@@ -11,6 +11,29 @@ class ListaProdutos(ListView):
     context_object_name = 'produtos'
     paginate_by = 6
 
+    def get_queryset(self):
+        # 1. Pega o QuerySet padrão (que traz todos os produtos)
+        queryset = super().get_queryset()
+        
+        # 2. Captura o parâmetro 'categoria' enviado pela URL (?categoria=ID)
+        # Nas CBVs, o 'request' fica guardado dentro de 'self.request'
+        categoria_id = self.request.GET.get('categoria')
+        
+        # 3. Se houver um ID na URL, filtra os produtos por essa categoria
+        if categoria_id:
+            queryset = queryset.filter(categoria__id=categoria_id)
+            
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        # 1. Pega o contexto padrão da ListView (que já contém a paginação e os produtos)
+        context = super().get_context_data(**kwargs)
+        
+        # 2. Adiciona a lista de todas as categorias no contexto do template
+        context['categorias'] = models.Categoria.objects.all()
+        
+        return context
+
 ''''''
 class DetalheProduto(DetailView):
     model = models.Produto

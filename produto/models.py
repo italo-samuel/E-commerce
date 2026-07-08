@@ -5,14 +5,21 @@ from django.conf import settings
 from django.utils.text import slugify
 from utils import utils
 
+class Categoria(models.Model):
+    nome = models.CharField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
 class Produto(models.Model):
     nome = models.CharField(max_length=255)
     descricao_curta = models.TextField(max_length=1000)
     descricao_longa = models.TextField(max_length=2000)
     imagem = models.ImageField(upload_to='produto_imagens/%Y/%m', blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True, max_length=255)
     preco_marketing = models.FloatField(verbose_name='Preço')
     preco_marketing_promocional = models.FloatField(default=0, verbose_name='Preço Promocional')
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     tipo = models.CharField(
         default='V',
         max_length=1,
@@ -79,3 +86,5 @@ class Variacao(models.Model):
     class Meta:
         verbose_name = 'Variação'
         verbose_name_plural = 'Variações'
+
+

@@ -8,16 +8,16 @@
 
  <div class="layout-principal">
     
-    <aside class="barra-filtros">
-        <h3>Categorias</h3>
-        <ul class="lista-filtros">
-            <li><a href="?categoria=sistema-operacional">Sistema Operacional</a></li>
-            <li><a href="?categoria=cozinha">Cozinha</a></li>
-            <li><a href="?categoria=roupa">Roupa</a></li>
-            <li><a href="?categoria=smartphone">Smartphone</a></li>
-            <li><a href="?categoria=notebook">Notebook</a></li>
-        </ul>
-    </aside>
+  <aside class="barra-filtros">
+    <h3>Categorias</h3>
+    <ul class="lista-filtros">
+        <li><a href="?">Todas as Categorias</a></li>
+        
+        {% for cat in categorias %}
+            <li><a href="?categoria={{ cat.id }}">{{ cat.nome }}</a></li>
+        {% endfor %}
+    </ul>
+</aside>
 
     <main class="container-produtos">
         {% for produto in produtos %}
