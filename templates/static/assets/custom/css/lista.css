@@ -25,7 +25,7 @@ a{
     justify-content: center; /* Empurra o conjunto todo (filtro + produtos) para o MEIO da tela */
     align-items: flex-start; /* Evita que o filtro estique para baixo */
     
-    gap: 5px; /* Define o quão "colado" o filtro ficará dos cards (pode diminuir para 10px se quiser mais perto) */
+    gap: 30px; /* Define o quão "colado" o filtro ficará dos cards (pode diminuir para 10px se quiser mais perto) */
 }
 
 /* 2. A Barra de Filtros */
@@ -122,11 +122,11 @@ a{
 .container-produtos {
     max-width: 700px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 15px 5px;
     display: grid;
     /* Cria colunas que se ajustam sozinhas (no mínimo 280px cada) */
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 20px;
 }
 
 /* Estrutura principal do Card */
@@ -142,7 +142,7 @@ a{
     transition: transform 0.2s;
 
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 .card-produto:hover {
@@ -171,7 +171,7 @@ a{
 }
 
 .produto-titulo {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: #333;
     margin-bottom: 10px;
 }

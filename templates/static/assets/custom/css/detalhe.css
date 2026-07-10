@@ -1,0 +1,182 @@
+/* --- CONFIGURAÇÕES GERAIS E CONTAINER --- */
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif; /* Define uma fonte padrão limpa */
+}
+
+.produto-container {
+    max-width: 1000px; /* Limita a largura máxima no monitor */
+    margin: 50px auto; /* Centraliza a página e dá margem no topo/baixo */
+    padding: 0 20px; /* Espaço nas laterais para não grudar na tela */
+    color: #333;
+    max-height: 1000px;
+}
+
+
+/* --- GRID PRINCIPAL (Imagem e Info com a mesma altura) --- */
+.produto-detalhe-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; /* Espaçamento entre os cards */
+    align-items: stretch; /* Força os dois lados a terem a mesma altura */
+
+    
+}
+
+/* Card da Imagem */
+.produto-imagem-card {
+    display: flex;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    max-height: 600px;
+}
+
+.produto-imagem-card img {
+    width: 100%;
+    object-fit: cover; 
+}
+
+
+/* --- CARD DE INFORMAÇÕES E ESPAÇAMENTOS --- */
+.produto-info-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0; /* Borda bem suave */
+
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.produto-titulo-detalhe {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px; /* Distância para a descrição */
+}
+
+.produto-descricao-curta {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666; /* Substitui o 'text-muted' do Bootstrap */
+    margin-bottom: 35px; /* Distância para os preços */
+}
+
+/* Preços */
+.produto-precos-container {
+    margin-bottom: 45px; /* Distância forte para o formulário */
+}
+
+.preco-atual {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #28a745; 
+    margin-right: 15px;
+}
+
+.preco-antigo {
+    font-size: 1.2rem;
+    color: #999;
+    text-decoration: line-through; /* Cria o risco no preço antigo */
+}
+
+
+/* --- FORMULÁRIO E CAMPO DE SELEÇÃO (SELECT) --- */
+.produto-form {
+    margin-top: auto; /* Empurra o formulário e o botão para a parte debaixo do card */
+    display: flex;
+    flex-direction: column;
+}
+
+.variacoes-group {
+    margin-bottom: 25px; /* Distância do select para o botão de comprar */
+}
+
+.variacoes-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.variacoes-select {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.variacoes-select:focus {
+    border-color: #007bff; /* Cor da borda ao clicar no campo */
+}
+
+
+/* --- BOTÃO DE COMPRAR PERSONALIZADO --- */
+.btn-comprar-custom {
+    width: 100%; /* Ocupa toda a largura disponível */
+    background-color: #EF3B33; /* Cor azul de fundo. Mude para #28a745 se quiser verde */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px; /* Arredondamento da borda */
+    padding: 16px; 
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icone-carrinho {
+    margin-right: 8px; /* Espaço entre o ícone e o texto do botão */
+}
+
+.btn-comprar-custom:hover {
+    background-color: #ce372f; /* Cor fica um pouco mais escura ao passar o mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 68, 0, 0.3);
+}
+
+
+/* --- DESCRIÇÃO LONGA NA PARTE INFERIOR --- */
+.produto-descricao-longa {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e0e0e0; /* Linha separadora superior */
+}
+
+.descricao-titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.produto-descricao-longa p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+
+/* --- RESPONSIVIDADE PARA CELULARES --- */
+@media (max-width: 992px) {
+    .produto-detalhe-grid {
+        grid-template-columns: 1fr; /* Muda para apenas 1 coluna */
+    }
+    
+    .produto-imagem-card img {
+        max-height: 400px;
+    }
+}

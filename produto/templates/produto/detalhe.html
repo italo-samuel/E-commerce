@@ -1,1 +1,64 @@
-{{ produto.nome }}
+{% extends 'base.html' %}
+
+{% load omfilters %}
+
+{% block 'titulo' %} E-commerce: {{produto.slug}} {% endblock %}
+
+{% block 'conteudo' %}
+<div class="produto-container">
+    
+    <div class="produto-detalhe-grid">
+        
+        <div class="produto-imagem-card">
+            {% if produto.imagem %}
+            <img src="{{produto.imagem.url}}" alt="{{produto.nome}}">
+            {% endif %}
+        </div>
+
+        <div class="produto-info-card">
+            <h1 class="produto-titulo-detalhe">{{ produto.nome }}</h1>
+            
+            <p class="produto-descricao-curta">
+                {{ produto.descricao_curta }}
+            </p>
+            
+            <div class="produto-precos-container">
+                {% if produto.preco_marketing_promocional %}
+                <span id="variation-preco" class="preco-atual">{{produto.preco_marketing_promocional|formata_preco}}</span>
+                <span id="variation-preco-promocional" class="preco-antigo">{{produto.preco_marketing|formata_preco}}</span>
+                {% else %}
+                <span id="variation-preco-promocional" class="preco-atual">{{produto.preco_marketing|formata_preco}}</span>
+                {% endif %}
+            </div>
+            
+            <form action="/addtocart/" id="form-add-to-cart" class="produto-form">
+                {% if produto.variacao_set.all %}
+                <div class="variacoes-group">
+                    <label for="select-variacoes" class="variacoes-label">Escolha a variação:</label>
+                    <select id="select-variacoes" name="vid" class="variacoes-select">
+                        {% for variacao in produto.variacao_set.all %}
+                            {% if variacao.preco_promocional %}
+                            <option data-preco="{{variacao.preco_promocional|formata_preco}}" data-preco-promocional="{{variacao.preco|formata_preco}}" value="45">{{variacao.nome}}</option>
+                            {% else %}
+                                <option data-preco="{{variacao.preco|formata_preco}}" value="45">{{variacao.nome}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                {% endif %}
+                <button type="submit" class="btn-comprar-custom">
+                    <i class="fa fa-shopping-cart icone-carrinho" aria-hidden="true"></i> Adicionar ao carrinho
+                </button>
+            </form>
+        </div>
+        
+    </div>
+
+    <div class="produto-descricao-longa">
+        <h2 class="descricao-titulo">Descrição do Produto</h2>
+        
+        <p> {{ produto.descricao_longa }} </p>
+    </div>
+
+</div>
+{% endblock %}
