@@ -6,7 +6,7 @@
     justify-content: space-between; /* Empurra um lado para a esquerda e outro para a direita */
     align-items: center;       /* Centraliza o texto verticalmente */
     padding: 20px 30px;        /* Espaçamento interno similar ao do menu */
-    margin-top: 50px;          /* Dá um espaço em relação aos cards de produtos acima dele */
+    margin-top: auto;          /* Dá um espaço em relação aos cards de produtos acima dele */
 }
 
 /* Estilo da parte esquerda (Feito com Django) */
