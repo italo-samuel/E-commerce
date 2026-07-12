@@ -3,6 +3,11 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+a{
+    text-decoration: none;
+    color: #EAE7DD;
+
+}
 
 /* Configuração principal do Menu */
 .menu-topo {
