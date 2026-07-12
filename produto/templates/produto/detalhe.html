@@ -31,7 +31,7 @@
                 {% endif %}
             </div>
             
-            <form action="{% url 'produto:adicionaraocarrinho' %}" id="form-add-to-cart" class="produto-form">
+            <form action="{% url 'produto:adicionaraocarrinho' %}" method="GET" id="form-add-to-cart" class="produto-form"> {% csrf_token %}
                 {% if produto.variacao_set.all %}
                 <div class="variacoes-group">
                     <label for="select-variacoes" class="variacoes-label">Escolha a variação:</label>

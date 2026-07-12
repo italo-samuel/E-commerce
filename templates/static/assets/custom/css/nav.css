@@ -3,10 +3,16 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-a{
+.link-home{
     text-decoration: none;
     color: #EAE7DD;
 
+}
+
+.link-home:hover{
+    text-decoration: none;
+    color: #EAE7DD;
+    opacity: 0.8;
 }
 
 /* Configuração principal do Menu */
@@ -52,6 +58,8 @@ a{
 
 .link-carrinho:hover {
     opacity: 0.8; /* Dá um leve efeitinho ao passar o mouse */
+    text-decoration: none;
+    color: #EAE7DD;
 }
 
 /* Estilo do Form de Pesquisa */

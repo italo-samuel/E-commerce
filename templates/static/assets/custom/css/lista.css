@@ -97,6 +97,10 @@ a{
     text-decoration: none;
 }
 
+.link-comprar:hover {
+    text-decoration: none;
+}
+
 /* =========================================
    RESPONSIVIDADE (CELULARES E TABLETS)
 ========================================= */

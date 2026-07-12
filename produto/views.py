@@ -44,7 +44,17 @@ class DetalheProduto(DetailView):
 
 class AdicionarAoCarrinho(View):
     def get(self, *args, **kwargs):
-        return HttpResponse('AdicionarAoCarrinho')
+        http_referer = self.request.META['HTTP_REFERER']
+        variacao_id = self.request.GET.get('vid')
+        
+    
+        if not variacao_id:
+            messages.error(self.request, 'Produto não existe')
+        
+        else:
+            messages.success(self.request, 'Produto adicionado ao carrinho!')
+
+        return redirect(http_referer)
 
 class RemoverDoCarrinho(View):
     def get(self, *args, **kwargs):

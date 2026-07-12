@@ -18,7 +18,7 @@
 }
 
 /* Estilo padrão de cada botão da paginação */
-.page-link {
+.pagina-link {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,13 +36,14 @@
 }
 
 /* Efeito ao passar o mouse */
-.page-link:hover {
+.pagina-link:hover {
     background-color: #EF3B33; /* Fundo vira a cor do menu */
     color: #EAE7DD; /* Letra vira a cor clara do menu */
+    text-decoration: none;
 }
 
 /* Estilo da página atual (Item Ativo) */
-.page-item.active .page-link {
+.pagina-item.active .page-link {
     background-color: #1D1842; /* Usa a cor do botão comprar para dar destaque */
     color: #ffffff;
     border-color: #1D1842;
