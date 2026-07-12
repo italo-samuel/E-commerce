@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views import View
 from django.http import HttpResponse
 from . import models
+from django.contrib import messages
 
 class ListaProdutos(ListView):
     model = models.Produto
