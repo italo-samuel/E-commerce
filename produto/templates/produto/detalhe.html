@@ -24,28 +24,39 @@
             
             <div class="produto-precos-container">
                 {% if produto.preco_marketing_promocional %}
-                <span id="variation-preco" class="preco-atual">{{produto.preco_marketing_promocional|formata_preco}}</span>
-                <span id="variation-preco-promocional" class="preco-antigo">{{produto.preco_marketing|formata_preco}}</span>
+                <span id="variation-preco-promocional" class="preco-atual">{{produto.preco_marketing_promocional|formata_preco}}</span>
+                <span id="variation-preco" class="preco-antigo">{{produto.preco_marketing|formata_preco}}</span>
                 {% else %}
                 <span id="variation-preco-promocional" class="preco-atual">{{produto.preco_marketing|formata_preco}}</span>
                 {% endif %}
             </div>
             
             <form action="{% url 'produto:adicionaraocarrinho' %}" method="GET" id="form-add-to-cart" class="produto-form"> {% csrf_token %}
-                {% if produto.variacao_set.all %}
                 <div class="variacoes-group">
                     <label for="select-variacoes" class="variacoes-label">Escolha a variação:</label>
                     <select id="select-variacoes" name="vid" class="variacoes-select">
                         {% for variacao in produto.variacao_set.all %}
                             {% if variacao.preco_promocional %}
-                            <option data-preco="{{variacao.preco_promocional|formata_preco}}" data-preco-promocional="{{variacao.preco|formata_preco}}" value="45">{{variacao.nome}}</option>
+                            <option data-preco="{{variacao.preco|formata_preco}}" data-preco-promocional="{{variacao.preco_promocional|formata_preco}}" 
+                            value="{{variacao.id}}">
+                                {% if variacao.nome %}
+                                    {{variacao.nome}}
+                                {% else %}
+                                    {{variacao}}
+                                {% endif %}
+                            </option>
                             {% else %}
-                                <option data-preco="{{variacao.preco|formata_preco}}" value="45">{{variacao.nome}}</option>
-                            {% endif %}
+                            <option data-preco-promocional="{{variacao.preco|formata_preco}}" value="{{variacao.id}}">
+                                {% if variacao.nome %}
+                                    {{variacao.nome}}
+                                {% else %}
+                                    {{variacao}}
+                                {% endif %}
+                            </option>
+                            {% endif %} 
                         {% endfor %}
                     </select>
                 </div>
-                {% endif %}
                 <button type="submit" class="btn-comprar-custom">
                     <i class="fa fa-shopping-cart icone-carrinho" aria-hidden="true"></i> Adicionar ao carrinho
                 </button>
