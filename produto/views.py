@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views import View
@@ -53,8 +53,24 @@ class AdicionarAoCarrinho(View):
         
         else:
             messages.success(self.request, 'Produto adicionado ao carrinho!')
+        
+        variacao = get_object_or_404(models.Variacao, id=variacao_id)
 
-        return redirect(http_referer)
+        if not self.request.session.get('carrinho'):
+            self.request.session['carrinho'] = {}
+            self.request.session.save()
+
+        carrinho = self.request.session['carrinho']
+
+        if variacao_id in carrinho:
+            # TODO: Varição existe no carrinho
+            pass
+            
+        else:
+            # TODO: Variação não exixte no carrinho, então Adiconar produto no carrinho
+            pass
+
+        return HttpResponse(f'{variacao.produto} {variacao.nome}')
 
 class RemoverDoCarrinho(View):
     def get(self, *args, **kwargs):
