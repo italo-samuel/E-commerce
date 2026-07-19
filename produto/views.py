@@ -50,11 +50,30 @@ class AdicionarAoCarrinho(View):
     
         if not variacao_id:
             messages.error(self.request, 'Produto não existe')
-        
-        else:
-            messages.success(self.request, 'Produto adicionado ao carrinho!')
+            return redirect(http_referer)
         
         variacao = get_object_or_404(models.Variacao, id=variacao_id)
+
+        produto = variacao.produto
+
+        produto_id = produto.id
+        produto_nome = produto.nome
+        variacao_nome = variacao.nome or ''
+        variacao_id = variacao.id
+        preco_unitario = variacao.preco
+        preco_unitario_promocional  = variacao.preco_promocional
+        quantidade = 1
+        slug = produto.slug
+        imagem = produto.imagem
+
+        if imagem:
+            imagem = imagem.name
+        else:
+            imagem = ''
+
+        if variacao.estoque < 1:
+            messages.erro(self.request, 'Sem estoque!')
+            return redirect(http_referer)
 
         if not self.request.session.get('carrinho'):
             self.request.session['carrinho'] = {}
@@ -67,8 +86,17 @@ class AdicionarAoCarrinho(View):
             pass
             
         else:
-            # TODO: Variação não exixte no carrinho, então Adiconar produto no carrinho
-            pass
+            carrinho[variacao_id] = {
+                'produto_id',
+                'produto_nome',
+                'variacao_nome',
+                'variacao_id',
+                'preco_unitario',
+                'preco_unitario_promocional',
+                'quantidade',
+                'slug', 
+                'imagem',
+            }
 
         return HttpResponse(f'{variacao.produto} {variacao.nome}')
 
