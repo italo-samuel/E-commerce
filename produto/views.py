@@ -87,15 +87,17 @@ class AdicionarAoCarrinho(View):
             
         else:
             carrinho[variacao_id] = {
-                'produto_id',
-                'produto_nome',
-                'variacao_nome',
-                'variacao_id',
-                'preco_unitario',
-                'preco_unitario_promocional',
-                'quantidade',
-                'slug', 
-                'imagem',
+                'produto_id': produto_id,
+                'produto_nome': produto_nome,
+                'variacao_nome': variacao_nome,
+                'variacao_id': variacao_id,
+                'preco_unitario': preco_unitario,
+                'preco_unitario_promocional': preco_unitario_promocional,
+                'preco_quantitativo': preco_quantitativo,
+                'preco_quantitativo_promocional': preco_quantitativo_promocional,
+                'quantidade': 1,
+                'slug': slug, 
+                'imagem': imagem,
             }
 
         return HttpResponse(f'{variacao.produto} {variacao.nome}')
