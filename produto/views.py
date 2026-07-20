@@ -54,6 +54,8 @@ class AdicionarAoCarrinho(View):
         
         variacao = get_object_or_404(models.Variacao, id=variacao_id)
 
+        variacao_estoque = variacao.estoque
+
         produto = variacao.produto
 
         produto_id = produto.id
@@ -82,8 +84,14 @@ class AdicionarAoCarrinho(View):
         carrinho = self.request.session['carrinho']
 
         if variacao_id in carrinho:
-            # TODO: Varição existe no carrinho
-            pass
+            quantidade_carrinho = carrinho[variacao_id]['quantidade']
+            quantidade_carrinho += 1
+
+            if variacao_estoque < quantidade_carrinho:
+                messages.warning(self.request, 
+                                 f'Estoque insuficiente para {quantidade_carrinho}x no '
+                                 f'produto "{produto_nome}". Adicionamos {variacao_estoque}x '
+                                 f'no seu carrinho')
             
         else:
             carrinho[variacao_id] = {
@@ -100,6 +108,7 @@ class AdicionarAoCarrinho(View):
                 'imagem': imagem,
             }
 
+        self.request.session.save()
         return HttpResponse(f'{variacao.produto} {variacao.nome}')
 
 class RemoverDoCarrinho(View):
